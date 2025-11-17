@@ -21,6 +21,48 @@ class MainWindow(QMainWindow):
         vbox.addWidget(self.input)
         vbox.addWidget(self.button)
         vbox.addWidget(self.output)
+
+        self.button.setObjectName("button_editor")
+        self.input.setObjectName("input_editor")
+        self.output.setObjectName("output_editor")
+
+        self.setStyleSheet("""
+                #input_editor {
+                    background-color: #f9f9f9;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    padding: 8px;  
+                    font-family: Consolas, monospace;
+                    font-size: 30px;
+                    color: #333;      
+                }
+                #output_editor {
+                    background-color: #f0f0f0;
+                    border: 1px solid #bbb;
+                    border-radius: 6px;
+                    padding: 8px;
+                    font-family: Consolas, monospace;
+                    font-size: 30px;
+                    color: #222;
+                }
+                #button_editor { 
+                    color: black;
+                    border: 1px solid #555;
+                    border-radius: 6px;
+                    padding: 10px 26px;
+                    font-weight: bold;
+                    font-size: 16px;
+                    letter-spacing: 0.5px;
+                }
+                #button_editor:hover {
+                    background-color: white;
+                    border: 1px solid #777;
+                    color: black;
+                    cursor: pointer;
+                }
+                """)
+
+
         central_widget.setLayout(vbox)
 
         self.button.clicked.connect(self.clean)
