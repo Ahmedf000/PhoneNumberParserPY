@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
+from gui.gui import MainWindow
 
 def main():
     application = QApplication(sys.argv)

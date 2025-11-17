@@ -2,7 +2,7 @@ import re
 
 class CleanParser:
     def __init__(self):
-        self.leading_zeros = re.compile(r'\^0+')
+        self.leading_zeros = re.compile(r'^0+')
         self.internal_zeros = re.compile(r'\(0+([^)]+)\)')
         self.leading_and_spaces = re.compile(r'^0+\s*')
         self.dashes = re.compile(r'-\s*')
