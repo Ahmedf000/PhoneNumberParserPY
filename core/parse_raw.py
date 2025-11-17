@@ -19,5 +19,3 @@ class CleanParser:
     def dash(self, text):
         return self.dashes.sub('', text)
 
-
-
