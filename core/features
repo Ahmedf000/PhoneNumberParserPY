@@ -1,0 +1,9 @@
+from help(phonenumbers), what is needed for all usage
+first normal parsing from the use input
+_____.parse()
+
+second further option
+we need to a str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.E164))
+to return full formatted with +
+
+third option
