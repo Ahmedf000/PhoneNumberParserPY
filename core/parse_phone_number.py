@@ -13,7 +13,7 @@ for func in all_clean:
 print(raw_finalized)
 
 class PhoneNumberParser:
-    def __init__(self):
+    def __init__(self, raw, code):
         self.parse = phonenumbers.parse(raw_finalized, code)
         self.valid = phonenumbers.is_valid_number(self.parse)
         self.phone_number = phonenumbers.format_number(self.parse, phonenumbers.PhoneNumberFormat.E164)

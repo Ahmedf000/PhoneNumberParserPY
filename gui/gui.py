@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QWidget, QTextEdit
 from core.parse_phone_number import PhoneNumberParser
+from core.parse_raw import CleanParser
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -26,5 +27,7 @@ class MainWindow(QMainWindow):
 
     def clean(self):
        text = self.input.toPlainText()
-       clean = PhoneNumberParser()
-       self.output.setText(clean.validate(text))
+       code = "TN"
+       clean = PhoneNumberParser(text, code)
+       result = clean.validate()
+       self.output.appendPlainText(result)
