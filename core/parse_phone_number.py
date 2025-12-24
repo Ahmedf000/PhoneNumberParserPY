@@ -22,7 +22,7 @@ TYPE_NAMES = {
 class PhoneNumberParser:
     def __init__(self, raw, code):
         clean = CleanParser()
-        all_clean = [clean.leading, clean.internal, clean.leading_spaces, clean.dash, clean.comma]
+        all_clean = [clean.leading, clean.internal, clean.dash, clean.comma]
         raw_finalized = raw
         for func in all_clean:
             raw_finalized = func(raw_finalized)

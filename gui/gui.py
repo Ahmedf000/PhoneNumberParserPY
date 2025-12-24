@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QWidget, QTextEdit, QLineEdit, QLabel
 from core.parse_phone_number import PhoneNumberParser
-from core.parse_raw import CleanParser
 
 
 class MainWindow(QMainWindow):
@@ -13,6 +12,7 @@ class MainWindow(QMainWindow):
         self.button = QPushButton("Get Phone Number Info")
         self.clear_button = QPushButton("Clear")
         self.output = QTextEdit()
+        self.output.setReadOnly(True)
         self.build_ui()
 
     def build_ui(self):
