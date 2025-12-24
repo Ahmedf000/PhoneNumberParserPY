@@ -2,13 +2,14 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton,
 from core.parse_phone_number import PhoneNumberParser
 from core.parse_raw import CleanParser
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Phone Number Parser")
         self.setGeometry(700, 300, 800, 500)
-        self.input = QTextEdit()
         self.code_input = QLineEdit()
+        self.input = QTextEdit()
         self.button = QPushButton("Get Phone Number Info")
         self.clear_button = QPushButton("Clear")
         self.output = QTextEdit()
@@ -38,28 +39,7 @@ class MainWindow(QMainWindow):
         self.code_input.setObjectName("code_editor")
 
         self.setStyleSheet("""
-                #button_editor:hover {
-                    background-color: white;
-                    border: 1px solid #777;
-                    color: black;
-                    cursor: pointer;
-                }
-                #clear_button {
-                    color: black;
-                    border: 1px solid #555;
-                    border-radius: 6px;
-                    padding: 10px 26px;
-                    font-weight: bold;
-                    font-size: 16px;
-                    letter-spacing: 0.5px;
-                }
-                #clear_button:hover {
-                    background-color: #ffcccc;
-                    border: 1px solid #ff0000;
-                    color: black;
-                    cursor: pointer;
-                }
-                    #code_editor {
+                #code_editor {
                     background-color: #f9f9f9;
                     border: 1px solid #ccc;
                     border-radius: 6px;
@@ -101,6 +81,21 @@ class MainWindow(QMainWindow):
                     color: black;
                     cursor: pointer;
                 }
+                #clear_button {
+                    color: black;
+                    border: 1px solid #555;
+                    border-radius: 6px;
+                    padding: 10px 26px;
+                    font-weight: bold;
+                    font-size: 16px;
+                    letter-spacing: 0.5px;
+                }
+                #clear_button:hover {
+                    background-color: #ffcccc;
+                    border: 1px solid #ff0000;
+                    color: black;
+                    cursor: pointer;
+                }
                 """)
 
         central_widget.setLayout(vbox)
@@ -109,11 +104,27 @@ class MainWindow(QMainWindow):
         self.clear_button.clicked.connect(self.clear_all)
 
     def clean(self):
-       text = self.input.toPlainText()
-       code = self.code_input.text().upper() or "TN"
-       parser = PhoneNumberParser(text, code)
-       result = parser.validate()
-       self.output.setText(str(result))
+        text = self.input.toPlainText().strip()
+        code = self.code_input.text().strip().upper()
+
+        if not text:
+            self.output.setText("✗ Error\n\nPlease enter a phone number")
+            return
+
+        if not code:
+            self.output.setText("✗ Error\n\nPlease enter a country code (e.g., TN, GB, FR)")
+            return
+
+        if len(code) != 2:
+            self.output.setText("✗ Error\n\nCountry code must be 2 letters (e.g., TN, GB, FR)")
+            return
+
+        try:
+            parser = PhoneNumberParser(text, code)
+            result = parser.validate()
+            self.output.setText(str(result))
+        except Exception as e:
+            self.output.setText(f"✗ Unexpected Error\n\n{str(e)}")
 
     def clear_all(self):
         self.input.clear()
