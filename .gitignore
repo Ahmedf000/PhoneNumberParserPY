@@ -3,3 +3,11 @@
 dist/
 
 build/
+
+
+
+gui/__pycache__
+
+PhoneNumberParser.spec
+
+app_icon.ico
